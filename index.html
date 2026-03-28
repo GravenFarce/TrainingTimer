@@ -247,6 +247,39 @@
 
     /* Done state */
     .done-label { font-size: 3rem; font-weight: 800; margin: 20px 0; }
+
+    /* ─────────────── MOBILE ─────────────── */
+    @media (max-width: 600px) {
+      body { padding: 16px 12px 32px; }
+
+      .page-header h1 { font-size: 1.6rem; }
+      .btn-add { padding: 8px 14px; font-size: .85rem; }
+
+      /* Interval rows: stack name on its own line */
+      .interval-row {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+      .interval-name {
+        order: -1;           /* name full-width on top */
+        width: 100%;
+        flex: none;
+      }
+      .drag-handle { width: 36px; height: 36px; font-size: 1rem; }
+      .color-circle { width: 32px; height: 32px; }
+      .btn-blk { width: 36px; height: 36px; font-size: 1.3rem; }
+      .time-label { width: 54px; font-size: 1rem; }
+
+      .btn-outline { width: 44px; height: 44px; font-size: 1.4rem; }
+      #roundsDisplay { font-size: 1.3rem; }
+
+      .btn-start {
+        padding: 20px;
+        font-size: 2rem;
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
