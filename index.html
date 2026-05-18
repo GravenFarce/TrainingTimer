@@ -216,26 +216,6 @@
       font-size: 18vmin; font-weight: 800; line-height: 1;
     }
 
-    /* Mini queue list */
-    #timerQueue {
-      display: flex; flex-direction: column; gap: 8px;
-      margin-bottom: 26px;
-      max-height: 280px; overflow-y: auto;
-    }
-    .tqi {
-      background: rgba(255,255,255,.42);
-      border-radius: 10px;
-      padding: 10px 16px;
-      display: flex; align-items: center; gap: 12px;
-      font-weight: 600;
-      text-align: left;
-      transition: background .3s, opacity .3s;
-    }
-    .tqi.active { background: #fff; box-shadow: 0 3px 14px rgba(0,0,0,.12); font-weight: 800; }
-    .tqi.done   { opacity: .28; }
-    .tqi-dot    { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
-    .tqi-time   { margin-left: auto; font-size: .92rem; opacity: .75; }
-
     .btn-stop {
       padding: 14px 44px;
       background: #c0392b; color: #fff;
@@ -326,7 +306,6 @@
   </div>
 
   <div id="timerRoundBadge2" style="display:none"></div>
-  <div id="timerQueue"></div>
   <button class="btn-stop" id="stopBtn">STOP</button>
 </div>
 
@@ -698,24 +677,6 @@ function updateTimerUI() {
   ring.style.strokeDashoffset = offset;
   ring.setAttribute('stroke', cur.color);
 
-  // Mini queue for current round
-  const roundBase = (cur.round - 1) * intervals.length;
-  const queueHtml = intervals.map((iv, i) => {
-    const si = roundBase + i;
-    const cls = si === seqIdx ? 'active' : si < seqIdx ? 'done' : '';
-    return `<div class="tqi ${cls}">
-      <span class="tqi-dot" style="background:${iv.color}"></span>
-      <span>${esc(iv.name)}</span>
-      <span class="tqi-time">${fmt(iv.seconds)}</span>
-    </div>`;
-  }).join('');
-
-  const queueEl = document.getElementById('timerQueue');
-  queueEl.innerHTML = queueHtml;
-
-  // Scroll active item into view
-  const activeItem = queueEl.querySelector('.tqi.active');
-  activeItem?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // ──────────────────────────────────────────────────────────────
